@@ -49,7 +49,10 @@
                                             >
                                                 {{ monitor.element.name }}
                                             </a>
+
                                             <p v-else class="item-name" data-testid="monitor-name"> {{ monitor.element.name }} </p>
+
+                                            <p class="item-version"> {{ getLastHeartbeatMessage(monitor) }} </p>
 
                                             <span
                                                 title="Setting"
@@ -150,6 +153,23 @@ export default {
         },
 
         /**
+         * Get the Last Heartbeat Message from the Monitor
+         * @param {Object} monitor Monitor to check
+         * @returns {string}
+         */
+         getLastHeartbeatMessage(monitor) {
+            let list = this.$root.heartbeatList[monitor.element.id];
+            if (list === undefined || list.length === 0) {
+                return "";
+            }
+            let message = list[list.length - 1].msg;
+            if (message === "No heartbeat in the time window") {
+                message = "";
+            }
+            return message;
+        },
+
+        /**
          * Should a link to the monitor be shown?
          * Attempts to guess if a link should be shown based upon if
          * sendUrl is set and if the URL is default or not.
@@ -221,6 +241,14 @@ export default {
 }
 
 .item-name {
+    padding-left: 5px;
+    padding-right: 5px;
+    margin: 0;
+    display: inline-block;
+}
+
+.item-version {
+    font-size: 12px;
     padding-left: 5px;
     padding-right: 5px;
     margin: 0;
