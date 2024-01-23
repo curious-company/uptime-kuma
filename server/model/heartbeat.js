@@ -18,7 +18,7 @@ class Heartbeat extends BeanModel {
         return {
             status: this.status,
             time: this.time,
-            msg: "",        // Hide for public
+            msg: this.msg,
             ping: this.ping,
         };
     }
