@@ -154,10 +154,10 @@ export default {
 
         /**
          * Get the Last Heartbeat Message from the Monitor
-         * @param {Object} monitor Monitor to check
-         * @returns {string}
+         * @param {object} monitor Monitor to check
+         * @returns {string} The last message from the client
          */
-         getLastHeartbeatMessage(monitor) {
+        getLastHeartbeatMessage(monitor) {
             let list = this.$root.heartbeatList[monitor.element.id];
             if (list === undefined || list.length === 0) {
                 return "";
