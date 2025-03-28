@@ -51,8 +51,8 @@
                                             </a>
 
                                             <p v-else class="item-name" data-testid="monitor-name"> {{ monitor.element.name }} </p>
-                                            <div v-if="showTags">
-                                                <p class="item-version"> {{ getLastHeartbeatMessage(monitor) }} </p>
+                                            <div v-if="showMessage" class="item-message">
+                                                <p> {{ getLastHeartbeatMessage(monitor) }} </p>
                                             </div>
                                             <span
                                                 title="Setting"
@@ -113,6 +113,10 @@ export default {
         showTags: {
             type: Boolean,
         },
+        /** Should message be shown? */
+        showMessage: {
+            type: Boolean,
+        },
         /** Should expiry be shown? */
         showCertificateExpiry: {
             type: Boolean,
@@ -166,7 +170,7 @@ export default {
             if (message === "No heartbeat in the time window") {
                 message = "";
             }
-            return message;
+            return "(" + message + ")";
         },
 
         /**
@@ -247,8 +251,8 @@ export default {
     display: inline-block;
 }
 
-.item-version {
-    font-size: 12px;
+.item-message {
+    font-size: 10px;
     padding-left: 5px;
     padding-right: 5px;
     margin: 0;
