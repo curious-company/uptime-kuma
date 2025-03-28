@@ -51,9 +51,9 @@
                                             </a>
 
                                             <p v-else class="item-name" data-testid="monitor-name"> {{ monitor.element.name }} </p>
-
-                                            <p class="item-version"> {{ getLastHeartbeatMessage(monitor) }} </p>
-
+                                            <div v-if="showTags">
+                                                <p class="item-version"> {{ getLastHeartbeatMessage(monitor) }} </p>
+                                            </div>
                                             <span
                                                 title="Setting"
                                             >
